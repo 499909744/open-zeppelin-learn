@@ -1,0 +1,26 @@
+# 部署时找不到ethers https://www.npmjs.com/package/@nomicfoundation/hardhat-ethers
+
+> hardhat.config.ts
+
+import { defineConfig } from "hardhat/config";
+import hardhatEthers from "@nomicfoundation/hardhat-ethers";
+
+export default defineConfig({
+  plugins: [hardhatEthers],
+});
+
+> 用的时候应用下
+import { network } from "hardhat";
+const { ethers } = await network.connect();
+
+const counter = await ethers.deployContract("Counter");
+await counter.inc();
+console.log(await counter.x());
+
+
+>部署成功了
+
+D:\node-code\learn>npx hardhat run --network localhost scripts/deploy.js
+
+Deploying Box...
+Box deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
